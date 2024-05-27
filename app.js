@@ -6,6 +6,11 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const userRouter = require("./routes/userRoutes.js");
 const carRouter = require("./routes/carRoutes.js");
+
+const corsConfig = { origin: "*",
+credential: true,
+methods: ["GET", "POST", "PUT", "DELETE"],
+};
 const PORT=process.env.port;
 require("dotenv").config();
 
@@ -27,6 +32,7 @@ app.use(bodyParser.json());
 app.use("/uploads", express.static("uploads"));
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(cookieParser());
+app.use(cors(corsConfig))
 
 //routers
 app.use("/api/user", userRouter);
