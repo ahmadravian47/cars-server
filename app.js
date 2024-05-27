@@ -6,7 +6,9 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const userRouter = require("./routes/userRoutes.js");
 const carRouter = require("./routes/carRoutes.js");
+const PORT=process.env.port;
 require("dotenv").config();
+
 
 mongoose
   .connect(process.env.DB_STRING)
@@ -53,6 +55,6 @@ app.use("/api/car", carRouter);
 //   }
 // });
 
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log("Server started at port 5000");
 });
